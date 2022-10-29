@@ -44,18 +44,25 @@ export const Day = ({
     <div
       className={classNames(
         status === Status.Start &&
-          "start rounded-l-full bg-blue-500 text-white",
-        status === Status.End && "end rounded-r-full bg-blue-500 text-white",
-        status === Status.Between && "between bg-blue-500 text-white",
-        status === Status.None && "none hover:rounded-full hover:bg-blue-100",
-        status === Status.Booked && "booked bg-gray-300 cursor-not-allowed",
+          "start rounded-l-2xl bg-green-200 text-green-700 border-green-500 border-l border-y",
+        status === Status.End &&
+          "end rounded-r-full bg-green-200 text-green-700 border-green-500 border-r border-y",
+        status === Status.Between &&
+          "between bg-green-200 text-green-700 border-green-500 border-y",
+        status === Status.None &&
+          "none hover:rounded-full hover:bg-blue-50 border-blue-200 hover:border hover:text-gray-900",
+        status === Status.Booked &&
+          "booked bg-red-200 text-red-700 border-y border-y-red-300 cursor-not-allowed",
         status === Status.StartBooked &&
-          "startbooked rounded-l-full bg-gray-300",
-        status === Status.EndBooked && "endbooked rounded-r-full bg-gray-300",
+          "startbooked rounded-l-full bg-red-200 text-red-700 border-y border-l border-red-300",
+        status === Status.EndBooked &&
+          "endbooked rounded-r-full bg-red-200 text-red-700 border-y border-r  border-red-300",
         status === Status.Before && "before text-gray-400 pointer-events-none",
+        dayDate.toDateString() === new Date().toDateString() &&
+          "border-b-4 border-blue-500",
         value === "" && "opacity-0",
         year + "-" + month + "-" + value,
-        "w-12 h-12 flex items-center justify-center"
+        "w-12 h-10 flex items-center justify-center"
       )}
       onClick={(e) => {
         if (status !== Status.Booked) {

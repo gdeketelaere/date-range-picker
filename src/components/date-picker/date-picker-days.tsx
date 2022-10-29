@@ -11,7 +11,7 @@ export const Days = (props: DaysProps) => {
 
   return (
     <>
-      <div className="grid grid-cols-7 text-center">
+      <div className="grid grid-cols-7 text-center text-gray-600">
         {dates.slice(startIndex, endIndex).map((d, i) => (
           <Day
             key={i}

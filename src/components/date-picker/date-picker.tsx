@@ -45,7 +45,7 @@ const DatePicker = ({ setDateRange, bookedDays }: DatePickerProps) => {
             q = 2;
           }
           return (
-            <div key={i}>
+            <div key={i} className="bg-white shadow-xl rounded-xl py-4">
               <Month
                 bookedDays={bookedDays}
                 handleClick={handleCalenderClicks}
