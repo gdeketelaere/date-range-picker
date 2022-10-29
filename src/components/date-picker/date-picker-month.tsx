@@ -1,6 +1,17 @@
+import { ReactNode } from "react";
 import { MonthProps } from "../../types/date-picker.types";
 import { getNumberOfRows } from "../../utils/date-picker.utils";
 import { Days } from "./date-picker-days";
+
+const daylabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+const DayLabel = ({ children }: { children: ReactNode }) => {
+  return (
+    <div className="w-14 h-8 flex items-center justify-center text-xs font-medium">
+      {children}
+    </div>
+  );
+};
 
 export const Month = ({
   year,
@@ -18,21 +29,17 @@ export const Month = ({
   const numberOfRows = getNumberOfRows(numOfDays, dayOfWeek);
 
   return (
-    <div className="min-w-[32rem]">
+    <div className="min-w-[21rem]">
       <h4 className="month text-center font-bold">
-        {monthName} {year}
+        {monthName.substring(0, 3)} {year}
       </h4>
       <div className="grid grid-cols-7 text-gray-500 text-center border-b">
-        <div>Sun</div>
-        <div>Mon</div>
-        <div>Tue</div>
-        <div>Wed</div>
-        <div>Thu</div>
-        <div>Fri</div>
-        <div>Sat</div>
+        {daylabels.map((label, i) => (
+          <DayLabel key={i}>{label}</DayLabel>
+        ))}
       </div>
       <div className="calendar">
-        {Array.from(Array(5).keys()).map((daysRow, i) => {
+        {Array.from(Array(6).keys()).map((daysRow, i) => {
           if (i < 4)
             return (
               <Days

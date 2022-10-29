@@ -35,20 +35,27 @@ const DatePicker = ({ setDateRange, bookedDays }: DatePickerProps) => {
   let currentMonth = today.getMonth() + 1;
   let year = today.getFullYear();
   const monthMax = 24;
+  let q = currentMonth;
   return (
     <>
       <div className="flex gap-16">
-        {Array.from(Array(monthMax).keys()).map((month, i) => (
-          <div key={month}>
-            <Month
-              bookedDays={bookedDays}
-              handleClick={handleCalenderClicks}
-              month={currentMonth + i}
-              year={year + roundDown((currentMonth + i - 1) / 12)}
-              dateRange={[startDate, endDate]}
-            />
-          </div>
-        ))}
+        {Array.from(Array(monthMax).keys()).map((month, i) => {
+          q++;
+          if (q > 13) {
+            q = 2;
+          }
+          return (
+            <div key={i}>
+              <Month
+                bookedDays={bookedDays}
+                handleClick={handleCalenderClicks}
+                month={q - 1}
+                year={year + roundDown((currentMonth + i - 1) / 12)}
+                dateRange={[startDate, endDate]}
+              />
+            </div>
+          );
+        })}
       </div>
     </>
   );

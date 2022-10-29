@@ -17,7 +17,11 @@ export default function App() {
         Simple Calendar Date Picker <CalendarDaysIcon className="w-8 h-8" />
       </h1>
       <DatePicker setDateRange={setDateRange} bookedDays={bookedDays} />
-      <p className="mt-16 w-full text-center">{JSON.stringify(dateRange)}</p>
+      <p className="mt-16 w-full text-center">
+        {dateRange &&
+          dateRange[0]?.toDateString() + " / " + dateRange[1]?.toDateString()}
+        {}
+      </p>
       <p className="w-full text-center">
         {dateRange && totalDays(dateRange[0], dateRange[1])} days
       </p>

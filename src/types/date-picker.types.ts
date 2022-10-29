@@ -38,5 +38,7 @@ export enum Status {
     None = "NONE",
     Between = "BETWEEN",
     Booked = "BOOKED",
+    StartBooked = "STARTBOOKED",
+    EndBooked = "ENDBOOKED",
     Before = "BEFORE",
   }

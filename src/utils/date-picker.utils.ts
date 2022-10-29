@@ -62,6 +62,18 @@ export const checkBookedDays = (dayDate: Date, bookedDays: bookedDays | undefine
   });
 };
 
+export const checkStartBookedDays = (dayDate: Date, bookedDays: bookedDays | undefined) => {
+  return bookedDays?.find((day) => {
+    return dayDate.toDateString() === day.startDate.toDateString();
+  });
+};
+
+export const checkEndBookedDays = (dayDate: Date, bookedDays: bookedDays | undefined) => {
+  return bookedDays?.find((day) => {
+    return dayDate.toDateString() === day.endDate.toDateString();
+  });
+};
+
 
 const getDaysArray = (startDate: Date, endDate: Date) => {
   for(var arr=[],dt=new Date(startDate); dt<=new Date(endDate); dt.setDate(dt.getDate()+1)){
