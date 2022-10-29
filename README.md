@@ -6,6 +6,8 @@ The selection will not allow to select a Date Range with Booked days inside the 
 
 ```
 import DatePicker from "./components/date-picker/date-picker";
+type datePicked = Date | undefined;
+
 const [dateRange, setDateRange] = useState<datePicked[] | undefined>();
 const bookedDays = [
    { startDate: new Date("2022-11-7"), endDate: new Date("2022-11-12") },
