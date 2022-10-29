@@ -49,10 +49,10 @@ export const getNumberOfRows = (
 }
 
 export const totalDays = (date_1:Date | undefined, date_2:Date | undefined) =>{
-  if (date_1=== undefined  || date_2=== undefined) return null
+  if (date_1=== undefined  || date_2=== undefined) return 0
   let difference = date_2.getTime() - date_1.getTime();
   let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
-  return TotalDays +1;
+  return TotalDays;
 }
   
 

@@ -3,9 +3,11 @@ import "./style/App.css";
 import DatePicker from "./components/date-picker/date-picker";
 import { datePicked } from "./types/date-picker.types";
 import { CalendarDaysIcon } from "@heroicons/react/24/solid";
+import { totalDays } from "./utils/date-picker.utils";
 
 export default function App() {
   const [dateRange, setDateRange] = useState<datePicked[] | undefined>();
+  const totalNights = dateRange ? totalDays(dateRange[0], dateRange[1]) : 0;
   const bookedDays = [
     { startDate: new Date("2022-11-7"), endDate: new Date("2022-11-12") },
     { startDate: new Date("2022-12-19"), endDate: new Date("2022-12-26") },
@@ -18,7 +20,9 @@ export default function App() {
       <DatePicker setDateRange={setDateRange} bookedDays={bookedDays} />
 
       <div className="mt-16 w-full text-center">
-        <h2 className="text-xl font-bold mb-2">Your selection</h2>
+        <h2 className="text-xl font-bold mb-2">
+          {totalNights} night{totalNights > 1 && <>s</>}
+        </h2>
         {dateRange && (
           <div className="flex gap-6 justify-center">
             <input
