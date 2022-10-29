@@ -31,9 +31,12 @@ export const Day = ({
       dayDate < dateRange[1]
     )
       setStatus(Status.Between);
+    if (dayDate < new Date()) setStatus(Status.Before);
+    if (dayDate.toDateString() === new Date().toDateString())
+      setStatus(Status.None);
     if (dateRange[0] === dayDate) setStatus(Status.Start);
     if (dateRange[1] === dayDate) setStatus(Status.End);
-    if (dayDate < new Date()) setStatus(Status.Before);
+
     if (checkBookedDays(dayDate, bookedDays)) setStatus(Status.Booked);
     if (checkStartBookedDays(dayDate, bookedDays))
       setStatus(Status.StartBooked);
@@ -44,25 +47,24 @@ export const Day = ({
     <div
       className={classNames(
         status === Status.Start &&
-          "start rounded-l-2xl bg-green-200 text-green-700 border-green-500 border-l border-y",
+          "start rounded-l-full bg-green-200 text-green-700 border-green-500 border-l border-y relative z-10 font-bold",
         status === Status.End &&
-          "end rounded-r-full bg-green-200 text-green-700 border-green-500 border-r border-y",
+          "end rounded-r-full bg-green-200 text-green-700 border-green-500 border-r border-y font-bold",
         status === Status.Between &&
           "between bg-green-200 text-green-700 border-green-500 border-y",
         status === Status.None &&
-          "none hover:rounded-full hover:bg-blue-50 border-blue-200 hover:border hover:text-gray-900",
+          "none hover:rounded-full hover:bg-blue-50 border-blue-200 hover:border hover:text-gray-900 hover:cursor-pointer",
         status === Status.Booked &&
           "booked bg-red-200 text-red-700 border-y border-y-red-300 cursor-not-allowed",
         status === Status.StartBooked &&
           "startbooked rounded-l-full bg-red-200 text-red-700 border-y border-l border-red-300",
         status === Status.EndBooked &&
           "endbooked rounded-r-full bg-red-200 text-red-700 border-y border-r  border-red-300",
-        status === Status.Before && "before text-gray-400 pointer-events-none",
-        dayDate.toDateString() === new Date().toDateString() &&
-          "border-b-4 border-blue-500",
+        status === Status.Before && "before text-gray-300 pointer-events-none",
+
         value === "" && "opacity-0",
         year + "-" + month + "-" + value,
-        "w-12 h-10 flex items-center justify-center"
+        "w-12 h-10 flex items-center justify-center relative"
       )}
       onClick={(e) => {
         if (status !== Status.Booked) {
@@ -70,7 +72,17 @@ export const Day = ({
         }
       }}
     >
-      <p>{value}</p>
+      <p
+        className={classNames(
+          "w-11 h-9 flex items-center justify-center",
+          (status === Status.Start || status === Status.End) &&
+            "bg-green-500 rounded-full text-white shadow-sm border-b-0",
+          dayDate.toDateString() === new Date().toDateString() &&
+            "font-bold border-b-4 border-blue-500"
+        )}
+      >
+        {value}
+      </p>
     </div>
   );
 };

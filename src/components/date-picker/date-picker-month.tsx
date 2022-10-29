@@ -29,7 +29,7 @@ export const Month = ({
   const numberOfRows = getNumberOfRows(numOfDays, dayOfWeek);
 
   return (
-    <div className="min-w-[21rem]">
+    <div className="min-w-[20rem]">
       <h4 className="month text-center font-bold">
         {monthName.substring(0, 3)} {year}
       </h4>
